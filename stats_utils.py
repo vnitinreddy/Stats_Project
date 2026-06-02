@@ -18,13 +18,11 @@ def adj(stat, p_two, alt):
             return 1-p_one
 
 def prop1(count, nobs, p1 = 0.5, alt='two-sided'):
-    stat, p_two = proportions_ztest(count,nobs,p1,alternative='two-sided')
-    p = adj(stat, p_two, alt)
+    stat, p_two = proportions_ztest(count,nobs,p1,alt)
     return {'statistic': float(stat),'p_value': float(p)}
 
 def prop2(count1, n1, count2, n2, alt='two-sided'):
-    stat, p_two = proportions_ztest([count1, count2],[n1, n2],alternative='two-sided')
-    p = adj(stat, p_two, alt)
+    stat, p_two = proportions_ztest([count1, count2],[n1, n2],alt)
     return {'statistic': float(stat),'p_value': float(p)}
 
 def t1(mean, s, n, mu = 0.0, alt = 'two-sided'):
