@@ -17,9 +17,17 @@ def adj(stat, p_two, alt):
         else:
             return 1-p_one
 
-def prop1(count, nobs, p1 = 0.5, alt='two-sided'):
-    stat, p = proportions_ztest(count,nobs,p1,alternative = alt)
-    return {'statistic': float(stat),'p_value': float(p)}
+def prop1(x, n, p1 = 0.5, alt='two-sided'):
+    ph = x/n
+    sd = math.sqrt(p1*(1-p1)/n)
+    z_score = (ph-p1)/sd
+    if alt == 'greater':
+        p = stats.norm.sf(z_score)
+    elif alt == 'two-sided':
+        p = 2*stats.norm.sf(z_score)
+    else:
+        p = stats.norm.cdf(z)
+    return {'statistic': float(z_score),'p_value': float(p)}
 
 def prop2(count1, n1, count2, n2, alt='two-sided'):
     stat, p = proportions_ztest([count1, count2],[n1, n2],alternative = alt)
