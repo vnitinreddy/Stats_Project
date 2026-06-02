@@ -38,7 +38,7 @@ def prop2(x1, n1, x2, n2, alt='two-sided'):
     if alt == 'greater':
         p = stats.norm.sf(z)
     elif alt == 'two-sided':
-        p = 2*stats.norm.sf(z)
+        p = 2*stats.norm.sf(abs(z))
     else:
         p = stats.norm.cdf(z)
     return {'statistic': float(z),'p_value': float(p)}
