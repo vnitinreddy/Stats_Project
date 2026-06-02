@@ -4,7 +4,7 @@ st.set_page_config(page_title = "ap stats tests", layout = "wide")
 st.title("ap stats significance tests")
 test = st.sidebar.selectbox("test",["1 proportion", "2 proportion", "1 sample t", "2 sample t", "paired t"])
 a = st.sidebar.number_input("alpha level", 0.001, 0.5, 0.05)
-alt = st.sidebar.selectbox("alternate hypothesis",["two-sided", "greater", "less"])
+alt = st.sidebar.selectbox("alternate hypothesis",["two-sided", "larger", "smaller"])
 def show(r):
     st.write("Answer) ")
     st.write("stat:", round(r["statistic"], 5))
