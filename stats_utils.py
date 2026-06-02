@@ -29,9 +29,19 @@ def prop1(x, n, p1 = 0.5, alt='two-sided'):
         p = stats.norm.cdf(z)
     return {'statistic': float(z_score),'p_value': float(p)}
 
-def prop2(count1, n1, count2, n2, alt='two-sided'):
-    stat, p = proportions_ztest([count1, count2],[n1, n2],alternative = alt)
-    return {'statistic': float(stat),'p_value': float(p)}
+def prop2(x1, n1, x2, n2, alt='two-sided'):
+    ph1 = x1/n1
+    ph2 = x2/n2
+    pc = (x1+x2)/(n1+n2)
+    sd = math.sqrt(pc*(1-pc)*(1/n1 + 1/n2))
+    z = (ph1-ph2)/sd
+    if alt == 'greater':
+        p = stats.norm.sf(z)
+    elif alt == 'two-sided':
+        p = 2*stats.norm.sf(z)
+    else:
+        p = stats.norm.cdf(z)
+    return {'statistic': float(z),'p_value': float(p)}
 
 def t1(mean, s, n, mu = 0.0, alt = 'two-sided'):
     se = s/math.sqrt(n)
