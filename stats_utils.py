@@ -24,7 +24,7 @@ def prop1(x, n, p1 = 0.5, alt='two-sided'):
     if alt == 'larger':
         p = stats.norm.sf(z_score)
     elif alt == 'two-sided':
-        p = 2*stats.norm.sf(z_score)
+        p = 2*stats.norm.sf(abs(z_score))
     else:
         p = stats.norm.cdf(z_score)
     return {'statistic': float(z_score),'p_value': float(p)}
