@@ -21,7 +21,7 @@ def prop1(x, n, p1 = 0.5, alt='two-sided'):
     ph = x/n
     sd = math.sqrt(p1*(1-p1)/n)
     z_score = (ph-p1)/sd
-    if alt == 'greater':
+    if alt == 'larger':
         p = stats.norm.sf(z_score)
     elif alt == 'two-sided':
         p = 2*stats.norm.sf(z_score)
@@ -35,7 +35,7 @@ def prop2(x1, n1, x2, n2, alt='two-sided'):
     pc = (x1+x2)/(n1+n2)
     sd = math.sqrt(pc*(1-pc)*(1/n1 + 1/n2))
     z = (ph1-ph2)/sd
-    if alt == 'greater':
+    if alt == 'larger':
         p = stats.norm.sf(z)
     elif alt == 'two-sided':
         p = 2*stats.norm.sf(abs(z))
